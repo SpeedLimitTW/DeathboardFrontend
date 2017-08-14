@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Tocas UI：CSS 與元件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.2/tocas.css">
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.2/tocas.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style type="text/css">
+        html,
+        body {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .deathNeedle {
+            --start-angle: -66deg;
+            --digits-angle: 66deg;
+            --gauge-value: 1;
+            transition: all 0.6s ease;
+            transform: rotate(calc( var(--start-angle) + ( ( var(--gauge-value) ) * 1.32deg ) ));
+        }
+        .speedNeedle {
+            --start-angle: -90deg;
+            --digits-angle: 90deg;
+            --gauge-value: 1;
+            animation:move 18s infinite;
+        }
+        .rpmNeedle {
+            --start-angle: -90deg;
+            --digits-angle: 90deg;
+            --gauge-value: 1;
+           animation:move2 30s infinite;
+        }
+
+        warning {
+            position: fixed;
+            top: 80px;
+            display: flex;
+            right: 190px;
+            font-size: 32px;
+        }
+        
+        warning content {
+            position: relative;
+            background: rgba(255, 252, 0, 0.47);
+            padding: 16px 21px;
+            color: rgb(255, 252, 0);
+            overflow: hidden;
+            max-width: 400px;
+            min-width: 400px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        
+        warning content marquee {
+            line-height: 1;
+        }
+        
+        warning content corner {
+            border: 4px solid rgb(255, 252, 0);
+            height: 20px;
+            width: 20px;
+            position: absolute;
+        }
+        
+        warning content corner[top][left] {
+            border-bottom: 0;
+            border-right: 0;
+            top: 0;
+            left: 0;
+        }
+        
+        warning content corner[bottom][left] {
+            border-top: 0;
+            border-right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        warning content corner[top][right] {
+            border-bottom: 0;
+            border-left: 0;
+            top: 0;
+            right: 0;
+        }
+        
+        warning content corner[bottom][right] {
+            border-top: 0;
+            border-left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        
+        warning icon {
+            height: 0;
+            line-height: 0 !important;
+            background: rgb(255, 252, 0);
+            padding: 19px 6px;
+            margin-left: 11px;
+            color: #000;
+            top: 0;
+        }
+        
+        flicker {
+            display: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 0 100px 30px rgba(255, 255, 255, 0.53) inset;
+            animation: shine 1s ease-out -1s infinite alternate forwards;
+        }
+
+        @keyframes shine{
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
+
+        @-webkit-keyframes move {
+            0% {
+                transform:rotate(-90deg);
+            }
+            50% {
+                transform:rotate(40deg);
+            }
+            100% {
+                transform:rotate(-90deg);
+            }
+        }
+
+        @-webkit-keyframes move2 {
+            0% {
+                transform:rotate(-90deg);
+            }
+            20% {
+                transform:rotate(90deg);
+            }
+            50% {
+                transform:rotate(0deg);
+            }
+            70% {
+                transform:rotate(20deg);
+            }
+            100% {
+                transform:rotate(-90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <flicker></flicker>
+    <!--<img src="images/car_right_top.svg" style="z-index: 1; position: fixed; top: 5vh; width: 9vh; left: 15.7vw;">-->
+    <!--<img src="images/car_left_top.svg" style="z-index: 1; position: fixed; top: 5vh; width: 9vh; left: 9.7vw;">-->
+    <!--<img src="images/car_right_bottom.svg" style="z-index: 1; position: fixed; top: 21vh; width: 9vh; left: 15.7vw;">-->
+    <!--<img src="images/car_left_bottom.svg" style="z-index: 1; position: fixed; top: 21vh; width: 9vh; left: 9.7vw;">-->
+
+    <img src="images/car_icon.svg" style="z-index: 1; position: fixed; top: 10vh; width: 11vh; left: 12.1vw;">
+    <img src="images/light_icon.svg" style="z-index: 1; position: fixed; top: 35vh; width: 11vh; left: 12.1vw;">
+    <img src="images/abs_icon.svg" style="z-index: 1; position: fixed; top: 50vh; width: 11vh; left: 12.1vw;">
+    <img src="images/background.svg" style="position: fixed; left:0; right: 0; bottom: 0; top: 0; width: 100%; height: 100%;">
+    <img class="deathNeedle" src="images/death_needle.svg" style="position: fixed; bottom: 10vh; width: 8vh; left: 49.1vw;
+transform-origin:bottom; ">
+    <img class="speedNeedle" src="images/speed_needle.svg" style="position: fixed; bottom: 2vh; width: 4vh; left: 15.6vw;
+transform-origin:bottom;">
+    <img class="rpmNeedle" src="images/rpm_needle.svg" style="position: fixed; bottom: 2vh; width: 4vh; left: 83.5vw;
+transform-origin:bottom;">
+
+    <img src="images/energy_icon.svg" style="position: fixed; top: 51vh; width: 5.5vh; left: 83.2vw;">
+    <img src="images/energy_icon.svg" style="position: fixed; top: 47.5vh; width: 5.5vh; left: 83.2vw;">
+    <img src="images/energy_icon.svg" style="position: fixed; top: 44vh; width: 5.5vh; left: 83.2vw;">
+    <img src="images/energy_icon.svg" style="position: fixed; top: 40.5vh; width: 5.5vh; left: 83.2vw;">
+
+    <warning>
+            <content>
+                <corner top left></corner>
+                <corner top right></corner>
+                <corner bottom left></corner>
+                <corner bottom right></corner>
+                <marquee scrollamount="10">WORKING IN PROGRESS ///</marquee>
+            </content>
+            <icon>
+                ▵
+            </icon>
+        </warning>
+    <script>
+        var conn = new WebSocket('ws://192.168.43.121:5000/ws')
+        conn.onmessage = (e) => {
+            console.log(e)
+            try {
+                var data = JSON.parse(e.data)
+                if(data.health !== undefined) {
+                    var h = parseInt(data.health)
+                    document.querySelector('.deathNeedle').style.setProperty('--gauge-value', h)
+                    if(h > 70) {
+                            document.querySelector('flicker').style.display = 'block'
+                    } else {
+                        document.querySelector('flicker').style.display = 'none'
+                    }
+                } else if (data.warring_msg !== undefined) {
+                    document.querySelector('marquee').innerText = data.warring_msg
+                }
+            } catch (e) {
+                console.log('err json')
+                console.log(e)
+            }  
+        }
+    </script>
+</body>
+
+</html>

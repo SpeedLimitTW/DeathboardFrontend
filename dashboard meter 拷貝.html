@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Tocas UI：CSS 與元件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.2/tocas.css">
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.2/tocas.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "D7CMB";
+            src: url("fonts/DSEG7-Classic-MINI/DSEG7ClassicMini-Bold.woff") format('woff');
+        }
+        
+        @font-face {
+            font-family: "D14CMB";
+            src: url("fonts/DSEG14-Classic-MINI/DSEG14ClassicMini-Bold.woff") format('woff');
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #mainFrame {
+            background: #000;
+            color: #FFF;
+            width: 100%;
+            height: 100%;
+            padding: 50px;
+            box-shadow: 0 0 20px 13px rgba(255, 255, 255, 0.61) inset
+        }
+        
+        info {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        time,
+        battery {
+            line-height: 1;
+            font-family: D7CMB;
+        }
+        
+        battery {
+            margin-left: 25px;
+        }
+        
+        battery percentage {
+            font-family: D14CMB;
+        }
+        
+        warning {
+            position: fixed;
+            top: 50px;
+            display: flex;
+            right: 50px;
+            font-size: 32px;
+        }
+        
+        warning content {
+            position: relative;
+            background: rgba(255, 252, 0, 0.47);
+            padding: 16px 21px;
+            color: rgb(255, 252, 0);
+            overflow: hidden;
+            max-width: 400px;
+            white-space: nowrap;
+        }
+        
+        warning content marquee {
+            font-family: D14CMB;
+            line-height: 1;
+        }
+        
+        warning content corner {
+            border: 4px solid rgb(255, 252, 0);
+            height: 20px;
+            width: 20px;
+            position: absolute;
+        }
+        
+        warning content corner[top][left] {
+            border-bottom: 0;
+            border-right: 0;
+            top: 0;
+            left: 0;
+        }
+        
+        warning content corner[bottom][left] {
+            border-top: 0;
+            border-right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        warning content corner[top][right] {
+            border-bottom: 0;
+            border-left: 0;
+            top: 0;
+            right: 0;
+        }
+        
+        warning content corner[bottom][right] {
+            border-top: 0;
+            border-left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        
+        warning icon {
+            height: 0;
+            /* max-width: 32px; */
+            /* max-height: 32px; */
+            line-height: 0 !important;
+            background: rgb(255, 252, 0);
+            padding: 19px 6px;
+            /* position: absolute; */
+            margin-left: 11px;
+            color: #000;
+            top: 0;
+        }
+        
+        speedmeter {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        speedmeter speed {
+            font-family: D7CMB;
+            font-size: 56px;
+            line-height: 1;
+        }
+        
+        speedmeter label {
+            display: block;
+            margin-top: 15px;
+            font-size: 16px;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainFrame">
+        <div>
+            <div style="font-size: 46px">
+                <info>
+                    <i class="time icon"></i> <time>12:10</time>
+                </info>
+                <info>
+                    <i class="battery full icon "></i>
+                    <battery>97
+                        <percentage>%</percentage>
+                    </battery>
+                </info>
+            </div>
+            <speedmeter>
+                <speed>32</speed>
+                <label>km/h</label>
+            </speedmeter>
+            <warning>
+                <content>
+                    <corner top left></corner>
+                    <corner top right></corner>
+                    <corner bottom left></corner>
+                    <corner bottom right></corner>
+                    <marquee scrollamount="10">WORKING IN PROGRESS ///</marquee>
+                </content>
+                <icon>
+                    ▵
+                </icon>
+            </warning>
+        </div>
+    </div>
+    <script>
+        setInterval(function() {
+            var text = $('time').text();
+            if (text.indexOf(':') !== -1) {
+                $('time').text('12 10');
+            } else {
+                $('time').text('12:10');
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>

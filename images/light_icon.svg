@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="74px" viewBox="0 0 102 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Light Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-271.000000, -493.000000)" fill="#FFFFFF">
+            <g id="Light-Icon" transform="translate(271.000000, 493.000000)">
+                <path d="M69.859375,0 C52.1081875,0 48.875,16.5654286 48.875,37 C48.875,57.4345714 52.1081875,74 69.859375,74 C87.6105625,74 102,57.4345714 102,37 C102,16.5654286 87.6105625,0 69.859375,0 Z M70.125,67.6571429 C54.720875,67.6571429 55.25,42.2857143 55.25,37 C55.25,31.7142857 54.720875,6.34285714 70.125,6.34285714 C85.529125,6.34285714 95.625,21.1428571 95.625,37 C95.625,52.8571429 85.529125,67.6571429 70.125,67.6571429 Z" id="Shape"></path>
+                <rect id="Rectangle-path" x="0" y="25.3714286" width="42.5" height="8.45714286"></rect>
+                <rect id="Rectangle-path" x="0" y="10.5714286" width="42.5" height="8.45714286"></rect>
+                <rect id="Rectangle-path" x="0" y="54.9714286" width="42.5" height="8.45714286"></rect>
+                <rect id="Rectangle-path" x="0" y="40.1714286" width="42.5" height="8.45714286"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
